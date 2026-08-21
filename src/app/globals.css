@@ -1,0 +1,188 @@
+@import "tailwindcss";
+
+/* ============================================
+   SAKSHAM Design System - Mobile First
+   ============================================ */
+
+@theme inline {
+  --color-primary: #F59E0B;
+  --color-primary-dark: #D97706;
+  --color-primary-light: #FCD34D;
+  --color-secondary: #3B82F6;
+  --color-secondary-dark: #2563EB;
+  --color-emergency: #EF4444;
+  --color-emergency-dark: #DC2626;
+  --color-success: #10B981;
+  --color-success-dark: #059669;
+  --color-warning: #F59E0B;
+  --color-danger: #EF4444;
+  --color-surface: #FFFFFF;
+  --color-surface-dark: #111827;
+  --color-bg: #F9FAFB;
+  --color-bg-dark: #030712;
+  --color-text: #111827;
+  --color-text-dark: #F9FAFB;
+  --color-text-muted: #6B7280;
+  --color-text-muted-dark: #9CA3AF;
+  --color-border: #E5E7EB;
+  --color-border-dark: #374151;
+  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+}
+
+/* Base styles */
+html {
+  -webkit-tap-highlight-color: transparent;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overscroll-behavior: none;
+}
+
+/* Safe area for PWA */
+body {
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 9999px;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes slideUp {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4); }
+  50% { box-shadow: 0 0 0 12px rgba(239, 68, 68, 0); }
+}
+@keyframes score-fill {
+  from { stroke-dashoffset: 283; }
+}
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-4px); }
+  20%, 40%, 60%, 80% { transform: translateX(4px); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+.animate-fade-in-up {
+  animation: fadeInUp 0.5s ease-out forwards;
+}
+.animate-slide-up {
+  animation: slideUp 0.3s ease-out forwards;
+}
+.animate-pulse-glow {
+  animation: pulse-glow 2s infinite;
+}
+.animate-shake {
+  animation: shake 0.5s ease-in-out;
+}
+
+/* Stagger children animations */
+.stagger-children > * {
+  opacity: 0;
+  animation: fadeInUp 0.4s ease-out forwards;
+}
+.stagger-children > *:nth-child(1) { animation-delay: 0.05s; }
+.stagger-children > *:nth-child(2) { animation-delay: 0.1s; }
+.stagger-children > *:nth-child(3) { animation-delay: 0.15s; }
+.stagger-children > *:nth-child(4) { animation-delay: 0.2s; }
+.stagger-children > *:nth-child(5) { animation-delay: 0.25s; }
+.stagger-children > *:nth-child(6) { animation-delay: 0.3s; }
+
+/* Glass effect */
+.glass {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.glass-dark {
+  background: rgba(17, 24, 39, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Bottom nav safe area */
+.pb-nav {
+  padding-bottom: calc(4.5rem + env(safe-area-inset-bottom));
+}
+
+/* Emergency mode overlay */
+.emergency-bg {
+  background: linear-gradient(135deg, #991B1B 0%, #EF4444 50%, #DC2626 100%);
+}
+
+/* Scenario immersive background */
+.scenario-bg {
+  background: linear-gradient(180deg, #0F172A 0%, #1E293B 50%, #0F172A 100%);
+}
+
+/* Readiness score circle */
+.score-circle {
+  transition: stroke-dashoffset 1.5s ease-in-out;
+}
+
+/* Card hover effect */
+.card-interactive {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.card-interactive:active {
+  transform: scale(0.98);
+}
+
+/* Skeleton loading */
+.skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* Input styles for mobile */
+input, select, textarea {
+  font-size: 16px !important; /* Prevent iOS zoom on focus */
+}
+
+/* Bottom sheet */
+.bottom-sheet {
+  border-radius: 1.5rem 1.5rem 0 0;
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, #F59E0B, #EF4444);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
